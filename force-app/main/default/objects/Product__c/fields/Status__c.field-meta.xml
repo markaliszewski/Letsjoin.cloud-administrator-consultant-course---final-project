@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Na jakim poziome ewaluacji jest dany produkt</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Na jakim poziome ewaluacji jest dany produkt</inlineHelpText>
+    <label>Status</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Product_Status</valueSetName>
+    </valueSet>
+</CustomField>

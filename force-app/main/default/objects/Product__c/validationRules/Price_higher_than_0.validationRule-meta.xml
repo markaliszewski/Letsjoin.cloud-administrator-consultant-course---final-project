@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Price_higher_than_0</fullName>
+    <active>true</active>
+    <description>Mogę ustawić cenę tylko powyżej 0.</description>
+    <errorConditionFormula>Price__c &lt;= 0</errorConditionFormula>
+    <errorDisplayField>Price__c</errorDisplayField>
+    <errorMessage>Mogę ustawić cenę tylko powyżej 0.</errorMessage>
+</ValidationRule>
