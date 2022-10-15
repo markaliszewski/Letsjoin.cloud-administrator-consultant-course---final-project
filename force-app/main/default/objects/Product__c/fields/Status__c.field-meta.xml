@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Status__c</fullName>
-    <description>Na jakim poziome ewaluacji jest dany produkt</description>
+    <description>What is status of evaluation of product</description>
     <externalId>false</externalId>
-    <inlineHelpText>Na jakim poziome ewaluacji jest dany produkt</inlineHelpText>
+    <inlineHelpText>What is status of evaluation of product?</inlineHelpText>
     <label>Status</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
