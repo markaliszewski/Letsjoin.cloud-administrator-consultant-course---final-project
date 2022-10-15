@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Price__c</fullName>
-    <description>Cena produktu</description>
+    <description>Product price</description>
     <externalId>false</externalId>
-    <inlineHelpText>Podaj cenę produktu.</inlineHelpText>
+    <inlineHelpText>Enter product price</inlineHelpText>
     <label>Price</label>
     <precision>18</precision>
     <required>false</required>
