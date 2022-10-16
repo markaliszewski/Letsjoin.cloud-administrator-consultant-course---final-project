@@ -11,23 +11,6 @@
     <type>Picklist</type>
     <valueSet>
         <restricted>true</restricted>
-        <valueSetDefinition>
-            <sorted>false</sorted>
-            <value>
-                <fullName>Active</fullName>
-                <default>true</default>
-                <label>Active</label>
-            </value>
-            <value>
-                <fullName>Draft</fullName>
-                <default>false</default>
-                <label>Draft</label>
-            </value>
-            <value>
-                <fullName>Archived</fullName>
-                <default>false</default>
-                <label>Archived</label>
-            </value>
-        </valueSetDefinition>
+        <valueSetName>Product_Status</valueSetName>
     </valueSet>
 </CustomField>

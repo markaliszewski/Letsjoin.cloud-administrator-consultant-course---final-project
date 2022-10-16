@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Parent__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Dodawanie nowych kategori do systemu w sposób hierarchiczny</description>
+    <description>Adding new categories to the system in a hierarchical manner</description>
     <externalId>false</externalId>
-    <inlineHelpText>Dodawanie nowych kategori do systemu w sposób hierarchiczny</inlineHelpText>
+    <inlineHelpText>Adding new categories to the system in a hierarchical manner</inlineHelpText>
     <label>Parent</label>
     <referenceTo>Category__c</referenceTo>
     <relationshipLabel>Categories</relationshipLabel>
