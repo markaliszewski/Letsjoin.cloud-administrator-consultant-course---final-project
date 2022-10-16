@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NumberActiveProducts__c</fullName>
+    <description>Pole typu rollup sumujące produkty w odpowiednich statusach</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pole typu rollup sumujące produkty w odpowiednich statusach</inlineHelpText>
+    <label>Number Active Products</label>
+    <summaryFilterItems>
+        <field>ProductCategory__c.TechnicalProductStatusforRollup__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </summaryFilterItems>
+    <summaryForeignKey>ProductCategory__c.Category__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>
