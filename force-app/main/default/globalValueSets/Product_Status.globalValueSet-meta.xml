@@ -15,7 +15,7 @@
         <default>false</default>
         <label>Archived</label>
     </customValue>
-    <description>Status produktu</description>
+    <description>Product Status</description>
     <masterLabel>Product Status</masterLabel>
     <sorted>false</sorted>
 </GlobalValueSet>

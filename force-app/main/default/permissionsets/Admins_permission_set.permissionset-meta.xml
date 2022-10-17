@@ -3,6 +3,11 @@
     <description>Gradually expanded permission set for the administrator</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Category__c.Parent__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Product__c.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
