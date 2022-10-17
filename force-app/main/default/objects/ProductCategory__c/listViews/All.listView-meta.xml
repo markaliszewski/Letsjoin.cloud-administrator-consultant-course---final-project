@@ -2,6 +2,7 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>All</fullName>
     <columns>NAME</columns>
+    <columns>TechnicalProductStatusforRollup__c</columns>
     <columns>Product__c</columns>
     <columns>Category__c</columns>
     <filterScope>Everything</filterScope>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TechnicalProductStatusforRollup__c</fullName>
+    <description>Technical field for summing up different categories for different statuses</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Technical field for summing up different categories for different statuses</inlineHelpText>
+    <label>Technical Product Status for Rollup</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Product_Status</valueSetName>
+    </valueSet>
+</CustomField>
