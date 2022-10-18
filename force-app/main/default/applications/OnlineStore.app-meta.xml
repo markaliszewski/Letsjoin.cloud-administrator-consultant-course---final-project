@@ -11,9 +11,10 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Online Store</label>
     <navType>Standard</navType>
-    <tabs>standard-Product2</tabs>
+    <tabs>Product__c</tabs>
     <tabs>Category__c</tabs>
     <tabs>ProductCategory__c</tabs>
     <tabs>standard-Case</tabs>
