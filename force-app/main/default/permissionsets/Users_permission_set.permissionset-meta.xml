@@ -30,7 +30,7 @@
         <field>Category__c.NumberDraftProducts__c</field>
         <readable>true</readable>
     </fieldPermissions>
-     <hasActivationRequired>false</hasActivationRequired>
+    <hasActivationRequired>false</hasActivationRequired>
     <label>Users_permission_set</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
