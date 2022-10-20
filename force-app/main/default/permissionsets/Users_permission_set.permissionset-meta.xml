@@ -7,6 +7,11 @@
     <description>Gradually expanded permission set for the users.</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Product__c.Price__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+     <fieldPermissions>
+        <editable>true</editable>
         <field>Product__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
