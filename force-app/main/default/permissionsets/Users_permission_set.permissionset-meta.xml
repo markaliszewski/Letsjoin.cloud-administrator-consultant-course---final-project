@@ -27,8 +27,6 @@
     </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Users_permission_set</label>
-    <hasActivationRequired>false</hasActivationRequired>
-    <label>Users_permission_set</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
