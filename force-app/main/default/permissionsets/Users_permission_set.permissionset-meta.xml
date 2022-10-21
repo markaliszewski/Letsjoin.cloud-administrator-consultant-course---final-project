@@ -30,6 +30,11 @@
         <field>Category__c.NumberDraftProducts__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Product__c.DefaultVatRate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Users_permission_set</label>
     <objectPermissions>
@@ -59,7 +64,7 @@
         <object>Case</object>
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
-        <objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -89,7 +94,8 @@
     <tabSettings>
         <tab>Category__c</tab>
         <visibility>Visible</visibility>
-    </tabSettings>    <tabSettings>
+    </tabSettings>
+    <tabSettings>
         <tab>ProductCategory__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
