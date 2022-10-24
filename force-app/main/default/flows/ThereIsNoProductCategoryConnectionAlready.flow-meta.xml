@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <description>Trying to fill TechnicalProductCategoryUniqueHelper__c unique field with Product__c.ID + Category__c.ID. This will fail if there is already such a connection what in fact is the point of this flow.</description>
+    <formulas>
+        <description>Concatenation of TechnicalProductCategoryUniqueHelper</description>
+        <name>TechnicalProductCategoryUniqueHelperConcatenate</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Product__r.Id} &amp; {!$Record.Category__r.Id}</expression>
+    </formulas>
+    <interviewLabel>ThereIsNoProductCategoryConnectionAlready {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>ThereIsNoProductCategoryConnectionAlready</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>Update triggering record TechnicalProductCategoryUniqueHelper field</description>
+        <name>UpdateNewTechnicalProductCategoryUniqueHelper</name>
+        <label>UpdateTechnicalProductCategoryUniqueHelper</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <inputAssignments>
+            <field>TechnicalProductCategoryUniqueHelper__c</field>
+            <value>
+                <elementReference>TechnicalProductCategoryUniqueHelperConcatenate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>UpdateNewTechnicalProductCategoryUniqueHelper</targetReference>
+        </connector>
+        <object>ProductCategory__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
