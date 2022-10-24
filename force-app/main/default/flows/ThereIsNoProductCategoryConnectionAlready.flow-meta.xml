@@ -2,11 +2,12 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <description>Trying to fill TechnicalProductCategoryUniqueHelper__c unique field with Product__c.ID + Category__c.ID. This will fail if there is already such a connection what in fact is the point of this flow.</description>
+    <environments>Default</environments>
     <formulas>
         <description>Concatenation of TechnicalProductCategoryUniqueHelper</description>
         <name>TechnicalProductCategoryUniqueHelperConcatenate</name>
         <dataType>String</dataType>
-        <expression>{!$Record.Product__r.Id} &amp; {!$Record.Category__r.Id}</expression>
+        <expression>{!$Record.Product__c} &amp; {!$Record.Category__c}</expression>
     </formulas>
     <interviewLabel>ThereIsNoProductCategoryConnectionAlready {!$Flow.CurrentDateTime}</interviewLabel>
     <label>ThereIsNoProductCategoryConnectionAlready</label>
