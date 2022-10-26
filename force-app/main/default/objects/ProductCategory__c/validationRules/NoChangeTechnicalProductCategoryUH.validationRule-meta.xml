@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NoChangeTechnicalProductCategoryUH</fullName>
+    <active>true</active>
+    <description>Prevents users from updating technical field which should be filled only by a flow ThereIsNoProductCategoryConnectionAlready</description>
+    <errorConditionFormula>ischanged( TechnicalProductCategoryUniqueHelper__c )</errorConditionFormula>
+    <errorMessage>You cannot update this technical field. It is only filled once by a flow at the record creation.</errorMessage>
+</ValidationRule>
