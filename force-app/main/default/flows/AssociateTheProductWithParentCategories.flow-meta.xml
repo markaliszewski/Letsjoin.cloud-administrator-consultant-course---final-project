@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <description>Assign Parent Category</description>
+        <name>AssignParentCategory</name>
+        <label>Assign Parent Category</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <assignmentItems>
+            <assignToReference>NewProductCategory.Product__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Product__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProductCategory.TechnicalProductStatusforRollup__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.TechnicalProductStatusforRollup__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewProductCategory.Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Category__r.Parent__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>CreateNewProductCategory</targetReference>
+        </connector>
+    </assignments>
+    <description>User wants the product added to the category to be also associated with the parent categories</description>
+    <interviewLabel>Associate The Product With Parent Categories {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Associate The Product With Parent Categories</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <description>Create new Product Category between Product and Parent Category of triggering record.</description>
+        <name>CreateNewProductCategory</name>
+        <label>Create New Product Category</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <inputReference>NewProductCategory</inputReference>
+    </recordCreates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>AssignParentCategory</targetReference>
+        </connector>
+        <object>ProductCategory__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>New assignment between product and parent category of category associated with triggering record.</description>
+        <name>NewProductCategory</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>ProductCategory__c</objectType>
+    </variables>
+</Flow>
