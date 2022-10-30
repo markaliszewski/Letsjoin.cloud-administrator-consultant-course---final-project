@@ -25,14 +25,65 @@
             <assignToReference>NewProductCategory.Category__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Record.Category__r.Parent__r.Id</elementReference>
+                <elementReference>$Record.Category__r.Parent__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>CreateNewProductCategory</targetReference>
+            <targetReference>IsParentCategoryNull</targetReference>
         </connector>
     </assignments>
+    <decisions>
+        <name>IsParentCategoryNull</name>
+        <label>Is Parent Category Null</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>RecordOfProductCategoryIdenticalToANewOne</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Is Not Null</defaultConnectorLabel>
+        <rules>
+            <name>ParentIsNull</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>NewProductCategory.Category__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Parent Is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsThereAlreadyAProductCategoryIdenticalToANewOne</name>
+        <label>Is There Already A Product Category Identical To A New One</label>
+        <locationX>374</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference>CreateNewProductCategory</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No There Is Not</defaultConnectorLabel>
+        <rules>
+            <name>YesThereIs</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>RecordOfProductCategoryIdenticalToANewOne.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Yes There Is</label>
+        </rules>
+    </decisions>
     <description>User wants the product added to the category to be also associated with the parent categories</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>Formula to check if there already is a product category like the one we want to create</description>
+        <name>NewTechnicalProductCategoryUniqueHelper</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.Product__c} &amp; {!$Record.Category__r.Parent__c}</expression>
+    </formulas>
     <interviewLabel>Associate The Product With Parent Categories {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Associate The Product With Parent Categories</label>
     <processMetadataValues>
@@ -58,10 +109,31 @@
         <description>Create new Product Category between Product and Parent Category of triggering record.</description>
         <name>CreateNewProductCategory</name>
         <label>Create New Product Category</label>
-        <locationX>176</locationX>
-        <locationY>455</locationY>
+        <locationX>506</locationX>
+        <locationY>815</locationY>
         <inputReference>NewProductCategory</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>RecordOfProductCategoryIdenticalToANewOne</name>
+        <label>Record Of Product Category Identical To A New One</label>
+        <locationX>374</locationX>
+        <locationY>575</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>IsThereAlreadyAProductCategoryIdenticalToANewOne</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>TechnicalProductCategoryUniqueHelper__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>NewTechnicalProductCategoryUniqueHelper</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>ProductCategory__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>50</locationX>
         <locationY>0</locationY>
