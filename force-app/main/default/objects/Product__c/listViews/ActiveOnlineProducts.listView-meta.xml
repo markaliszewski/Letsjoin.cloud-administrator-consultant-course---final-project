@@ -13,4 +13,8 @@
         <value>Active</value>
     </filters>
     <label>Active Online Products</label>
+    <sharedTo>
+        <role>Admin</role>
+        <role>Employee</role>
+    </sharedTo>
 </ListView>

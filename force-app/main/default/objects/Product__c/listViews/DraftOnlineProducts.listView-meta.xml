@@ -13,4 +13,8 @@
         <value>Draft</value>
     </filters>
     <label>Draft Online Products</label>
+    <sharedTo>
+        <role>Admin</role>
+        <role>Employee</role>
+    </sharedTo>
 </ListView>

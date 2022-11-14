@@ -13,4 +13,8 @@
         <value>Archived</value>
     </filters>
     <label>Archived Online Products</label>
+    <sharedTo>
+        <role>Admin</role>
+        <role>Employee</role>
+    </sharedTo>
 </ListView>
