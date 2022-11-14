@@ -11,15 +11,17 @@
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Online Store</label>
     <navType>Standard</navType>
     <tabs>Product__c</tabs>
     <tabs>Category__c</tabs>
     <tabs>ProductCategory__c</tabs>
-    <tabs>Order__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
+    <tabs>Order__c</tabs>
+    <tabs>standard-ProcessInstanceWorkitem</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Online_Store_UtilityBar</utilityBar>
 </CustomApplication>
