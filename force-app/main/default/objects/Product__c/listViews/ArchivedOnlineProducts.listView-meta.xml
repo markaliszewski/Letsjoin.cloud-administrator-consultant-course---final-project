@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ArchivedOnlineProducts</fullName>
+    <columns>NAME</columns>
+    <columns>Price__c</columns>
+    <columns>DefaultVatRate__c</columns>
+    <columns>Status__c</columns>
+    <columns>ApprovalStatus__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Archived</value>
+    </filters>
+    <label>Archived Online Products</label>
+    <sharedTo>
+        <role>Admin</role>
+        <role>Employee</role>
+    </sharedTo>
+</ListView>
