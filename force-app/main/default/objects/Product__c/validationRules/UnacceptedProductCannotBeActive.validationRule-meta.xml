@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>UnacceptedProductCannotBeActive</fullName>
+    <active>true</active>
+    <description>Before marking product as active, ask admin for Approval.</description>
+    <errorConditionFormula>not ISPICKVAL(ApprovalStatus__c, &apos;Accepted&apos;)   &amp;&amp;  ISPICKVAL(Status__c, &apos;Active&apos;)</errorConditionFormula>
+    <errorMessage>Before marking product as active - ask admin for Approval using &quot;Submit for Approval&quot; Button</errorMessage>
+</ValidationRule>
