@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ApprovalStatus__c</fullName>
+    <description>Approval of the product by the admin before marking it as active</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Approval of the product by the admin before marking it as active</inlineHelpText>
+    <label>Approval Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>AvailableApprovalStatuses</valueSetName>
+    </valueSet>
+</CustomField>
