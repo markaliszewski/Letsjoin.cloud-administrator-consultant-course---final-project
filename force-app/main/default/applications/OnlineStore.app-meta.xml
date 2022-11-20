@@ -19,8 +19,8 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
     </actionOverrides>
     <brand>
-        <headerColor>#976F20</headerColor>
-        <logo>sklep</logo>
+        <headerColor>#39C4B8</headerColor>
+        <logo>male</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
