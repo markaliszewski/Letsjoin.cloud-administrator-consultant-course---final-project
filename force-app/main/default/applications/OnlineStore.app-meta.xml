@@ -19,8 +19,8 @@
         <pageOrSobjectType>Account</pageOrSobjectType>
     </actionOverrides>
     <brand>
-        <headerColor>#976F20</headerColor>
-        <logo>sklep</logo>
+        <headerColor>#39C4B8</headerColor>
+        <logo>male</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
     </brand>
@@ -40,6 +40,8 @@
     <tabs>standard-Contact</tabs>
     <tabs>Order__c</tabs>
     <tabs>standard-ProcessInstanceWorkitem</tabs>
+    <tabs>standard-EnhancedLetterhead</tabs>
+    <tabs>standard-EmailTemplate</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Online_Store_UtilityBar</utilityBar>
 </CustomApplication>
