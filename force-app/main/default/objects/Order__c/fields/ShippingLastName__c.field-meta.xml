@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ShippingLastName__c</fullName>
-    <description>Where to ship an Order?</description>
+    <description>What is last name of the order recipent?</description>
     <externalId>false</externalId>
-    <inlineHelpText>Where to ship an Order?</inlineHelpText>
+    <inlineHelpText>What is last name of the order recipent?</inlineHelpText>
     <label>Shipping Last Name</label>
     <length>40</length>
     <required>false</required>

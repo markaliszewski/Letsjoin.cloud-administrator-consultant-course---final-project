@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>ShippingCountry__c</fullName>
-    <description>Where to ship an Order?</description>
+    <description>Which country the order should be shipped to?</description>
     <externalId>false</externalId>
-    <inlineHelpText>Where to ship an Order?</inlineHelpText>
+    <inlineHelpText>Which country the order should be shipped to?</inlineHelpText>
     <label>Shipping Country</label>
     <length>30</length>
     <required>false</required>
