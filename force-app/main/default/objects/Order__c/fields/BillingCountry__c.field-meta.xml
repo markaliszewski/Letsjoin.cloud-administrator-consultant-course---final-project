@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>BillingCountry__c</fullName>
-    <description>What data should be included in the invoice?</description>
+    <description>What is the the company country to be included in the invoice?</description>
     <externalId>false</externalId>
-    <inlineHelpText>What data should be included in the invoice?</inlineHelpText>
+    <inlineHelpText>What is the the company country to be included in the invoice?</inlineHelpText>
     <label>Billing Country</label>
     <length>30</length>
     <required>false</required>
