@@ -77,13 +77,6 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
-        <filters>
-            <field>Status__c</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <stringValue>Draft</stringValue>
-            </value>
-        </filters>
         <object>Order__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>

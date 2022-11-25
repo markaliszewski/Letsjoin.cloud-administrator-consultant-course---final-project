@@ -5,7 +5,8 @@
         <description>Email Alert About Online Order Status Change</description>
         <protected>false</protected>
         <recipients>
-            <type>accountOwner</type>
+            <field>ShippingEmail__c</field>
+            <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/To_customer_Order_c_Status_has_changed_1668967630195</template>
