@@ -1,0 +1,8 @@
+call del Letterhead-174.csv
+
+call sfdx force:data:soql:query -q "SELECT Id, Name, Description, LetterheadHeader, LetterheadFooter FROM EnhancedLetterhead WHERE Name LIKE 'Organisation wide Letterhead'" -r csv >> Letterhead-174.csv
+
+call sfdx force:data:bulk:upsert -s EnhancedLetterhead -f Letterhead-174.csv -i Id
+
+:: druga opcja nie działa
+

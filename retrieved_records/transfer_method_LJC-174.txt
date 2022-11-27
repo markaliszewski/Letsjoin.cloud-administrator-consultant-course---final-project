@@ -1,0 +1,9 @@
+How to transfer records related to new email flow LJC-174:
+
+Source org:
+sfdx force:data:tree:export -q "SELECT Id, Name, Description, LetterheadHeader, LetterheadFooter FROM EnhancedLetterhead WHERE Name LIKE 'Organisation wide Letterhead'"
+sfdx force:data:tree:export -q "SELECT Id, Name, DeveloperName, OwnerId, BrandTemplateId, EnhancedLetterheadId, TemplateStyle, IsActive, TemplateType, Encoding, Description, Subject, HtmlValue, Body, ApiVersion, Markup, UiType, RelatedEntityType FROM EmailTemplate WHERE Name LIKE 'To customer - Order__c.Status has changed'"
+
+Destination org:
+sfdx force:data:tree:import -f .\EnhancedLetterhead.json
+sfdx force:data:tree:import -f .\EmailTemplate.json
