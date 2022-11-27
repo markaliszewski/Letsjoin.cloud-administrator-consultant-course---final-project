@@ -5,10 +5,9 @@
     <externalId>false</externalId>
     <inlineHelpText>What is email of the order recipent?</inlineHelpText>
     <label>Shipping Email</label>
-    <length>60</length>
-    <required>false</required>
+    <required>true</required>
     <trackHistory>false</trackHistory>
     <trackTrending>false</trackTrending>
-    <type>Text</type>
+    <type>Email</type>
     <unique>false</unique>
 </CustomField>
