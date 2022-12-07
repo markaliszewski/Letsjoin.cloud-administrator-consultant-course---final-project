@@ -5,5 +5,9 @@
         <members>OnlineStoreEmailTemplates/EmailToCaseDoneCorrectly</members>
         <name>EmailTemplate</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>Letterhead</name>
+    </types> 
     <version>55.0</version>
 </Package>
