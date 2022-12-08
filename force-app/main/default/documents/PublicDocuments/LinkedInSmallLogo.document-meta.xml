@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>LinkedIn  Logo 302x77 pixels</description>
+    <internalUseOnly>false</internalUseOnly>
+    <name>LinkedIn Small Logo</name>
+    <public>true</public>
+</Document>
