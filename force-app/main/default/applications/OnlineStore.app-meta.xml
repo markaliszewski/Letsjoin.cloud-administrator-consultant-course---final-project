@@ -18,6 +18,24 @@
         <type>Flexipage</type>
         <pageOrSobjectType>Account</pageOrSobjectType>
     </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Case_for_Online_Order</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Case_for_Online_Order</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Case</pageOrSobjectType>
+    </actionOverrides>
     <brand>
         <headerColor>#39C4B8</headerColor>
         <logo>male</logo>
@@ -32,11 +50,12 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Online Store</label>
     <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
     <tabs>Category__c</tabs>
     <tabs>Product__c</tabs>
     <tabs>Order__c</tabs>
-    <tabs>OrderLineItem__c</tabs>
     <tabs>ProductCategory__c</tabs>
+    <tabs>OrderLineItem__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
