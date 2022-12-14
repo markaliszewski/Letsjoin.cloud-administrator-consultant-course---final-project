@@ -17,6 +17,7 @@
     <fileNotFoundPage>FileNotFound</fileNotFoundPage>
     <genericErrorPage>Exception</genericErrorPage>
     <inMaintenancePage>InMaintenance</inMaintenancePage>
+    <indexPage>CommunitiesLanding</indexPage>
     <masterLabel>Products</masterLabel>
     <redirectToCustomDomain>false</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
@@ -25,6 +26,4 @@
     <siteGuestRecordDefaultOwner>markaliszewski+adminint@gmail.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
     <urlPathPrefix>Products</urlPathPrefix>
-</CustomSite>
-Prefix>Products</urlPathPrefix>
 </CustomSite>
