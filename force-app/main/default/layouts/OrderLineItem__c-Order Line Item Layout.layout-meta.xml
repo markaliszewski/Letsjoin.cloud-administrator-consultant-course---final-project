@@ -21,7 +21,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Quantity__c</field>
+                <field>VATRate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>TotalGrossPrice__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -36,6 +40,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>EffectiveUnitPrice__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Quantity__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
