@@ -3,7 +3,6 @@
     <fullName>UnitListPrice__c</fullName>
     <description>The price of the Online Product before the discount</description>
     <externalId>false</externalId>
-    <formula>OnlineProduct__r.Price__c</formula>
     <inlineHelpText>The price of the Online Product before the discount</inlineHelpText>
     <label>Unit List Price</label>
     <precision>18</precision>
