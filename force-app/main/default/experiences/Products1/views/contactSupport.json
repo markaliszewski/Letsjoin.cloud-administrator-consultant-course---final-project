@@ -10,7 +10,7 @@
   }, {
     "components" : [ {
       "componentAttributes" : {
-        "allowAttachments" : true,
+        "allowAttachments" : false,
         "attachmentLabel" : "Upload File",
         "buttonAlignment" : "center",
         "buttonBgColor" : "",
@@ -30,7 +30,7 @@
         "headerSubtitle" : "Tell us how we can help.",
         "headerTitle" : "Contact Customer Support",
         "isMicrobatch" : false,
-        "quickActionName" : "NewCommunityCase",
+        "quickActionName" : "NewCase",
         "requestSummaryText" : "Case summary"
       },
       "componentName" : "forceCommunity:contactSupportForm",
@@ -43,27 +43,6 @@
     "regionName" : "content",
     "type" : "region"
   }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "askConfirmationQuestion" : true,
-        "confirmationMessageLabel" : "Got it!",
-        "deflectionSubtitle" : "Find what you need here.",
-        "deflectionTitle" : "Need Answers Fast?",
-        "firstQuestion" : "Did this content solve your issue?",
-        "maxResults" : 6,
-        "measureDeflection" : true,
-        "redirectUrl" : "",
-        "secondQuestion" : "Stop creating your case?",
-        "showArticles" : true,
-        "showDiscussions" : false,
-        "topicId" : ""
-      },
-      "componentName" : "forceCommunity:caseDeflection",
-      "id" : "97802572-4cbf-40d7-8fd1-4d114d276cfa",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
     "id" : "f75cb333-65de-4714-9dca-d71326aeab6c",
     "regionName" : "sidebar",
     "type" : "region"
