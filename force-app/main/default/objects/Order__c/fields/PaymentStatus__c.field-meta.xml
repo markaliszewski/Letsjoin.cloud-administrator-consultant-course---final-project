@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PaymentStatus__c</fullName>
+    <description>Has the client already paid? Is it confirmed?</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Has the client already paid? Is it confirmed?</inlineHelpText>
+    <label>Payment Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PENDING</fullName>
+                <default>false</default>
+                <label>PENDING</label>
+            </value>
+            <value>
+                <fullName>COMPLETED</fullName>
+                <default>false</default>
+                <label>COMPLETED</label>
+            </value>
+            <value>
+                <fullName>CANCELED</fullName>
+                <default>false</default>
+                <label>CANCELED</label>
+            </value>
+            <value>
+                <fullName>WAITING_FOR_CONFIRMATION</fullName>
+                <default>false</default>
+                <label>WAITING_FOR_CONFIRMATION</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
