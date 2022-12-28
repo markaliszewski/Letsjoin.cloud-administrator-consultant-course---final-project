@@ -4,7 +4,7 @@
   "configurationTags" : [ ],
   "id" : "311266fe-d33c-4e3b-ade7-6c33f41a76ad",
   "label" : "Contact Support",
-  "pageAccess" : "UseParent",
+  "pageAccess" : "Public",
   "routeType" : "contactsupport",
   "type" : "route",
   "urlPrefix" : "contactsupport"

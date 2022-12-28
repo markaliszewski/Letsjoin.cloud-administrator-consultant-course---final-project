@@ -11,4 +11,11 @@
         <target>Product__c</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Contact Support</label>
+        <position>2</position>
+        <publiclyAvailable>true</publiclyAvailable>
+        <target>/contactsupport</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
 </NavigationMenu>

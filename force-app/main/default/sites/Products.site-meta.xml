@@ -22,8 +22,6 @@
     <redirectToCustomDomain>false</redirectToCustomDomain>
     <referrerPolicyOriginWhenCrossOrigin>true</referrerPolicyOriginWhenCrossOrigin>
     <selfRegPage>CommunitiesSelfReg</selfRegPage>
-    <siteAdmin>markaliszewski+adminint@gmail.com</siteAdmin>
-    <siteGuestRecordDefaultOwner>markaliszewski+adminint@gmail.com</siteGuestRecordDefaultOwner>
     <siteType>ChatterNetwork</siteType>
     <urlPathPrefix>Products</urlPathPrefix>
 </CustomSite>
