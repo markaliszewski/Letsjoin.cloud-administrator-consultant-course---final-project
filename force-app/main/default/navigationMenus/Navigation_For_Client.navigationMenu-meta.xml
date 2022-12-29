@@ -18,4 +18,12 @@
         <target>/contactsupport</target>
         <type>InternalLink</type>
     </navigationMenuItem>
+    <navigationMenuItem>
+        <defaultListViewId>MyCases</defaultListViewId>
+        <label>Cases</label>
+        <position>3</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>Case</target>
+        <type>SalesforceObject</type>
+    </navigationMenuItem>
 </NavigationMenu>
