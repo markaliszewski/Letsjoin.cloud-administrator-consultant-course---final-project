@@ -26,7 +26,7 @@
         "callToActionUrl" : "",
         "confirmationSubtext" : "We’ll get back to you soon.",
         "confirmationText" : "Your case was created.",
-        "guestQuickActionName" : "GuestCommunityCase",
+        "guestQuickActionName" : "GuestCommunityCaseForOnlineStore",
         "headerSubtitle" : "Tell us how we can help.",
         "headerTitle" : "Contact Customer Support",
         "isMicrobatch" : false,
