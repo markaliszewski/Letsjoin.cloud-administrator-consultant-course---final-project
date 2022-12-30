@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <decisions>
+        <description>Just to prevent possible nesting of the current flow</description>
+        <name>IsThereDefaultVatRateInOnlineProduct</name>
+        <label>Is There Default Vat Rate In Online Product</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <defaultConnectorLabel>There is No Default Vat Rate in Product</defaultConnectorLabel>
+        <rules>
+            <name>ThereIsDefaultVatRateInProduct</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OnlineProduct__r.DefaultVatRate__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>InsertProductDefaultVatRate</targetReference>
+            </connector>
+            <label>There is Default Vat Rate in Product</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Insert Product Default Vat Rate into Order Line Item If Current Value Is Null {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Insert Product Default Vat Rate into Order Line Item If Current Value Is Null</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description>If there is no VAT Rate specified, insert Product Default Vat Rate</description>
+        <name>InsertProductDefaultVatRate</name>
+        <label>Insert Product Default Vat Rate</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>VATRate__c</field>
+            <value>
+                <elementReference>$Record.OnlineProduct__r.DefaultVatRate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>IsThereDefaultVatRateInOnlineProduct</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>VATRate__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OnlineProduct__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>OrderLineItem__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

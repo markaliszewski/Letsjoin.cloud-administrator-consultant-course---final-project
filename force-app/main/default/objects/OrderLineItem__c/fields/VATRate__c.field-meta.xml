@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VATRate__c</fullName>
-    <description>What is VAT Rate of product in this order?</description>
+    <description>What is VAT Rate of product in this order? Can be autofilled by flow InsertProductDefaultVatRateintoOrderLineItemIfCurrentValueIsNull</description>
     <externalId>false</externalId>
-    <inlineHelpText>What is VAT Rate of product in this order?</inlineHelpText>
+    <inlineHelpText>What is VAT Rate of product in this order? If you want to insert Default Vate Rate of Online Product, choose
+&quot;--None--&quot;</inlineHelpText>
     <label>VAT Rate</label>
     <required>false</required>
     <trackHistory>false</trackHistory>
