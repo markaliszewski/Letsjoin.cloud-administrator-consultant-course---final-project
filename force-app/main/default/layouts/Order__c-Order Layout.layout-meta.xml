@@ -18,6 +18,10 @@
                 <behavior>Edit</behavior>
                 <field>BillingAccount__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PayUPaymentLink__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -33,6 +33,11 @@
                 <default>false</default>
                 <label>WAITING_FOR_CONFIRMATION</label>
             </value>
+            <value>
+                <fullName>NEW</fullName>
+                <default>false</default>
+                <label>NEW</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

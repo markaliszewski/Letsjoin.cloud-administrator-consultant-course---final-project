@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PayUPaymentLink__c</fullName>
+    <defaultValue>&quot;https://poland.payu.com/&quot;</defaultValue>
+    <description>Link which enable the customer to pay for the order</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Link which enable the customer to pay for the order</inlineHelpText>
+    <label>PayU Payment Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>
