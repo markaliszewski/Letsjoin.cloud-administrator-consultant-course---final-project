@@ -56,6 +56,8 @@
     <tabs>Order__c</tabs>
     <tabs>ProductCategory__c</tabs>
     <tabs>OrderLineItem__c</tabs>
+    <tabs>Cart__c</tabs>
+    <tabs>CartLineItem__c</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
