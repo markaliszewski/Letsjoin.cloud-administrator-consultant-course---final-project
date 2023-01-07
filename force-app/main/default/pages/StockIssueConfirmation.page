@@ -1,0 +1,147 @@
+<apex:page standardController="Order__c" renderAs="pdf">
+    <head>
+        <style type="text/css" media="print">
+            @page {
+                padding-top: 40px;
+                margin-top: 40px;
+                margin-bottom: 150px;
+            }
+            div.tabelka {
+                margin-top: 0cm;
+                page-break-inside: avoid;
+                page-break-after: auto;
+                position: relative;
+            }
+            .tableLabel {
+                margin-top: 0;
+            }
+        </style>
+        <style>
+ 			 .bottom-two {
+  	 		  margin-bottom: 2cm;
+ 			 }
+		</style>
+    </head> 
+    <body>
+                <div class="tabelka">
+            <table width="50%" style="float:left; border-bottom: 1px solid #1e448a" valing="middle">
+                <tr>
+                    <td width="30%" align="left" style="color:#1e448a; font-size:9pt">
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingFirstName__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingLastName__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingVATNumber__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingCity__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingCountry__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingPostalCode__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.BillingStreet__c.Label}"/></div>
+                    </td>
+                    <td width="69%" align="left" valign="top" style="font-size:9pt;">
+                        <div><apex:outputText value="{!Order__c.BillingFirstName__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingLastName__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingVATNumber__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingCity__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingCountry__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingPostalCode__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.BillingStreet__c}"/></div>
+                    </td>
+                </tr>
+            </table>
+        </div> 
+        <div class="tabelka">
+            <table width="50%" style="float:right; border-bottom: 1px solid #1e448a">
+                <tr>
+                    <td width="30%" align="left" style="color:#1e448a; font-size:9pt">
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingFirstName__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingLastName__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingCity__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingCountry__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingPhone__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingPostalCode__c.Label}"/></div>
+                        <div class="tableLabel"><apex:outputText value="{!$ObjectType.Order__c.fields.ShippingStreet__c.Label}"/></div>
+                    </td>
+                    <td width="69%" align="left" valign="top" style="font-size:9pt;">
+                        <div><apex:outputText value="{!Order__c.ShippingCity__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingCountry__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingFirstName__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingLastName__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingPhone__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingPostalCode__c}"/></div>
+                        <div><apex:outputText value="{!Order__c.ShippingStreet__c}"/></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+        </div>
+        
+        <div>
+            <p class="bottom-two">
+ 			  
+            <br/>
+			</p>
+        </div>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!Order__c.OrderLineItems__r}" var="oli" align="center" style="float:center;font-size:9pt; border-bottom: 1px solid #1e448a" columnsWidth="18%,13%,17%,12%,22%,18%,18%,18%">>
+                <apex:column value="{!oli.OnlineProduct__c}"/>
+                <apex:column value="{!oli.Quantity__c}"/>
+                <apex:column value="{!oli.UnitListPrice__c}"/>
+                <apex:column value="{!oli.VATRate__c}"/>
+                <apex:column value="{!oli.EffectiveUnitPrice__c}"/>
+                <apex:column value="{!oli.TotalNetPrice__c}"/>
+                <apex:column value="{!oli.TotalGrossPrice__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+                <div>
+            <p class="bottom-two">
+ 			  
+            <br/>
+			</p>
+        </div>
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!Order__c}" var="ordi" align="right" style="float:center;font-size:9pt; border-bottom: 1px solid #1e448a" columnsWidth="60%,60%">>
+                <apex:column value="{!ordi.OrderNetValue__c}"/>
+                <apex:column value="{!ordi.OrderGrossValue__c}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        
+        <div>
+            <p class="bottom-two">
+ 			  
+            <br/>
+			</p>
+        </div>
+        <div class="tabelka" style="margin-bottom: 7mm" >
+            <table width="50%" style="float:right">
+                <tr>
+                    <td width="30%" align="left" style="color:#1e448a; font-size:11pt">
+                        <div class="tableLabel"><apex:outputText value="Date"/></div>
+                    </td>
+                    <td width="69%" align="left" valign="top" style="font-size:11pt;">
+                        <div><apex:outputText value="{! NOW() }" /></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+                
+        <div class="tabelka">
+            <table width="50%" style="float:right">
+                <tr>
+                    <td width="30%" align="left" style="color:#1e448a; font-size:11pt">
+                        <div class="tableLabel"><apex:outputText value="Printed by"/></div>
+                        <div class="tableLabel"><apex:outputText value=" "/></div>
+                    </td>
+                    <td width="69%" align="left" valign="top" style="font-size:11pt;">
+                        <div><apex:outputText value="{!$User.FirstName}"/></div>
+                        <div><apex:outputText value="{!$User.LastName}"/></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</apex:page>
