@@ -4,8 +4,8 @@
     <assignments>
         <name>AssignTableUpdatesIntoCartLineItems</name>
         <label>Assign Table Updates Into Cart Line Items</label>
-        <locationX>176</locationX>
-        <locationY>518</locationY>
+        <locationX>732</locationX>
+        <locationY>758</locationY>
         <assignmentItems>
             <assignToReference>GetCustomerCartLineItems</assignToReference>
             <operator>Assign</operator>
@@ -17,9 +17,118 @@
             <targetReference>UpdateAllCartLineItems</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Conversion</name>
+        <label>Conversion</label>
+        <locationX>402</locationX>
+        <locationY>1934</locationY>
+        <assignmentItems>
+            <assignToReference>GetCustomerCart.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Converted</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>UpdateCart</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>AreThereProductsInCart</name>
+        <label>Are There Products in Cart?</label>
+        <locationX>534</locationX>
+        <locationY>1238</locationY>
+        <defaultConnector>
+            <targetReference>NoCartLineItem</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Products In Cart</defaultConnectorLabel>
+        <rules>
+            <name>ProductsInCart</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FirstCartLineItem</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>NewOnlineOrder</targetReference>
+            </connector>
+            <label>Products In Cart</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsOrderAlreadyReady</name>
+        <label>Is Order Already Ready</label>
+        <locationX>732</locationX>
+        <locationY>998</locationY>
+        <defaultConnectorLabel>Order Is Not Ready</defaultConnectorLabel>
+        <rules>
+            <name>Order_Is_Ready</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>IsYourOrderReady.value</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>GetCustomerCartLineItems</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ShippingAndBillingData</targetReference>
+            </connector>
+            <label>Order Is Ready</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>IsThereACustomerCartInitialized</name>
+        <label>Is There A Customer Cart Initialized</label>
+        <locationX>391</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>GetCustomerCartLineItems</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>A Customer Cart Initialized</defaultConnectorLabel>
+        <rules>
+            <name>ACustomerCartIsNotInitialized</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>GetCustomerCart.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ThereIsNoCartYet</targetReference>
+            </connector>
+            <label>A Customer Cart Is Not Initialized</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
     <interviewLabel>CustomerCartScreenFlow {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Customer Cart Screen Flow</label>
+    <loops>
+        <name>IteraterThroughCustomerLineItem</name>
+        <label>Iterater Through Customer Line Item</label>
+        <locationX>402</locationX>
+        <locationY>1598</locationY>
+        <collectionReference>Copy_1_of_Get_Customer_Cart_Line_Items</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>NewOrderLineItems</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Conversion</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -39,14 +148,250 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
+    <recordCreates>
+        <description>Convert Customer Cart to new Online Order</description>
+        <name>NewOnlineOrder</name>
+        <label>New Online Order</label>
+        <locationX>402</locationX>
+        <locationY>1358</locationY>
+        <connector>
+            <targetReference>Copy_1_of_Get_Customer_Cart_Line_Items</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>BillingAccount__c</field>
+            <value>
+                <elementReference>GetCustomerCart.Account__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingCity__c</field>
+            <value>
+                <elementReference>BillingCity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingCompanyName__c</field>
+            <value>
+                <elementReference>BillingCompanyName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingCountry__c</field>
+            <value>
+                <elementReference>BillingCountry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingFirstName__c</field>
+            <value>
+                <elementReference>BillingFirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingLastName__c</field>
+            <value>
+                <elementReference>BillingLastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingPostalCode__c</field>
+            <value>
+                <elementReference>BillingPostalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingStreet__c</field>
+            <value>
+                <elementReference>BillingStreet</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>BillingVATNumber__c</field>
+            <value>
+                <elementReference>BillingVATNumber</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>IsB2B__c</field>
+            <value>
+                <elementReference>DifferentBillingData.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>GetCustomerCart.Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PaymentStatus__c</field>
+            <value>
+                <stringValue>NEW</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingCity__c</field>
+            <value>
+                <elementReference>ShippingCity</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingCountry__c</field>
+            <value>
+                <elementReference>ShippingCountry</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingEmail__c</field>
+            <value>
+                <elementReference>Shipping_Email.value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingFirstName__c</field>
+            <value>
+                <elementReference>ShippingFirstName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingLastName__c</field>
+            <value>
+                <elementReference>ShippingLastName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingPhone__c</field>
+            <value>
+                <elementReference>ShippingPhone</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingPostalCode__c</field>
+            <value>
+                <elementReference>ShippingPostalCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ShippingStreet__c</field>
+            <value>
+                <elementReference>ShippingStreet</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Submitted</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Order__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>NewOrderLineItems</name>
+        <label>New Order Line Items</label>
+        <locationX>490</locationX>
+        <locationY>1718</locationY>
+        <connector>
+            <targetReference>IteraterThroughCustomerLineItem</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Discount__c</field>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Discount__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OnlineOrder__c</field>
+            <value>
+                <elementReference>NewOnlineOrder</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OnlineProduct__c</field>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Online_Product__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Quantity__c</field>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Quantity__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>UnitListPrice__c</field>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.UnitListPrice__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>VATRate__c</field>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Online_Product__r.DefaultVatRate__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>OrderLineItem__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description>Used in a decision laterr</description>
+        <name>AreThereRecordsInCart</name>
+        <label>Are There Records In Cart</label>
+        <locationX>732</locationX>
+        <locationY>518</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>ListOfProductsInYourCart</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Customer_Cart__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetCustomerCart.Id</elementReference>
+            </value>
+        </filters>
+        <object>CartLineItem__c</object>
+        <outputAssignments>
+            <assignToReference>FirstCartLineItem</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+    </recordLookups>
+    <recordLookups>
+        <name>Copy_1_of_Get_Customer_Cart_Line_Items</name>
+        <label>Copy 1 of Get Customer Cart Line Items</label>
+        <locationX>402</locationX>
+        <locationY>1478</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>IteraterThroughCustomerLineItem</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Customer_Cart__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>GetCustomerCart.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>CartLineItem__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <recordLookups>
         <name>GetCustomerCart</name>
         <label>Get Customer Cart</label>
-        <locationX>176</locationX>
+        <locationX>391</locationX>
         <locationY>158</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>GetCustomerCartLineItems</targetReference>
+            <targetReference>IsThereACustomerCartInitialized</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -70,11 +415,11 @@
     <recordLookups>
         <name>GetCustomerCartLineItems</name>
         <label>Get Customer Cart Line Items</label>
-        <locationX>176</locationX>
-        <locationY>278</locationY>
+        <locationX>732</locationX>
+        <locationY>398</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>ListOfProductsInYourCart</targetReference>
+            <targetReference>AreThereRecordsInCart</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -91,15 +436,28 @@
     <recordUpdates>
         <name>UpdateAllCartLineItems</name>
         <label>Update All Cart Line Items</label>
-        <locationX>176</locationX>
-        <locationY>638</locationY>
+        <locationX>732</locationX>
+        <locationY>878</locationY>
+        <connector>
+            <targetReference>IsOrderAlreadyReady</targetReference>
+        </connector>
         <inputReference>GetCustomerCartLineItems</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>UpdateCart</name>
+        <label>Update Cart</label>
+        <locationX>402</locationX>
+        <locationY>2054</locationY>
+        <connector>
+            <targetReference>YourOrderHasBeenPlaced</targetReference>
+        </connector>
+        <inputReference>GetCustomerCart</inputReference>
     </recordUpdates>
     <screens>
         <name>ListOfProductsInYourCart</name>
         <label>List of Products in your Cart</label>
-        <locationX>176</locationX>
-        <locationY>398</locationY>
+        <locationX>732</locationX>
+        <locationY>638</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -190,16 +548,399 @@
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
+        <fields>
+            <name>IsYourOrderReady</name>
+            <extensionName>flowruntime:toggle</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Is your order ready?</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleActive</name>
+                <value>
+                    <stringValue>Yes</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>messageToggleInactive</name>
+                <value>
+                    <stringValue>No</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>value</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+        </fields>
         <nextOrFinishButtonLabel>Update your Cart</nextOrFinishButtonLabel>
         <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>NoCartLineItem</name>
+        <label>No Cart Line Item</label>
+        <locationX>666</locationX>
+        <locationY>1358</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Back To Shipping/Billing Data</backButtonLabel>
+        <fields>
+            <name>NoProducts</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;You have no products in your cart!&lt;span class=&quot;ql-cursor&quot;&gt;﻿&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Back to Cart</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>ShippingAndBillingData</name>
+        <label>Shipping And Billing Data</label>
+        <locationX>534</locationX>
+        <locationY>1118</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Back to my cart</backButtonLabel>
+        <connector>
+            <targetReference>AreThereProductsInCart</targetReference>
+        </connector>
+        <fields>
+            <name>ShippingData</name>
+            <fieldText>Shipping data</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>ShippingData_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>ShippingCountry</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.ShippingCountry</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping Country</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>ShippingCity</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.ShippingCity</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping City</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>ShippingStreet</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.ShippingStreet</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping Street</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>ShippingPostalCode</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.ShippingPostalCode</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping Postal Code</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>DifferentBillingData</name>
+                    <extensionName>flowruntime:toggle</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Billing data</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleActive</name>
+                        <value>
+                            <stringValue>Differs</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>messageToggleInactive</name>
+                        <value>
+                            <stringValue>The same</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>ShippingData_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>ShippingFirstName</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>$User.FirstName</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping First Name</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>ShippingLastName</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>$User.LastName</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping Last Name</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>Shipping_Email</name>
+                    <extensionName>flowruntime:email</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Shipping Email</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>disabled</name>
+                        <value>
+                            <booleanValue>false</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>value</name>
+                        <value>
+                            <elementReference>$User.Email</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                </fields>
+                <fields>
+                    <name>ShippingPhone</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.Phone</elementReference>
+                    </defaultValue>
+                    <fieldText>Shipping Phone</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+        </fields>
+        <fields>
+            <name>BillingData</name>
+            <fieldText>Billing data</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>BillingData_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>BillingCompanyName</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.Name</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing Company Name</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingCity</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.BillingCity</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing City</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingPostalCode</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.BillingPostalCode</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing Postal Code</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingStreet</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.BillingStreet</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing Street</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>BillingData_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>BillingCountry</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.BillingCountry</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing Country</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingFirstName</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>$User.FirstName</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing First Name</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingLastName</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>$User.LastName</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing Last Name</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <fields>
+                    <name>BillingVATNumber</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>GetCustomerCart.Account__r.AccountNumber</elementReference>
+                    </defaultValue>
+                    <fieldText>Billing VAT Number</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>6</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>DifferentBillingData.value</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <nextOrFinishButtonLabel>My order is ready, send me PayU link</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>ThereIsNoCartYet</name>
+        <label>There Is No Cart Yet</label>
+        <locationX>50</locationX>
+        <locationY>398</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>YourCartIsEmpty</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;Your cart is empty.&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;Please find a product you like in the ACTIVE PRODUCTS section. and add it to your Cart.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Update</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>YourOrderHasBeenPlaced</name>
+        <label>Your Order Has Been Placed</label>
+        <locationX>402</locationX>
+        <locationY>2174</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>OrderPlaced</name>
+            <fieldText>&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Thank you for your purchase!&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 12px;&quot;&gt;Your order is placed and PayU link was send to your email.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <nextOrFinishButtonLabel>Start a new order</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>265</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>GetCustomerCart</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <variables>
+        <name>FirstCartLineItem</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
