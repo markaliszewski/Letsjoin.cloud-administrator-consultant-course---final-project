@@ -19,6 +19,16 @@
       "type" : "component"
     }, {
       "componentAttributes" : {
+        "flowArguments" : "[{\"label\":\"OnlineProduct\",\"dataType\":\"SObject\",\"supportsRecordId\":true,\"value\":\"{!Record.Id}\"}]",
+        "flowName" : "AddOnlineProductToCustomerCart"
+      },
+      "componentName" : "forceCommunity:flowCommunity",
+      "id" : "13257800-833b-4672-a501-f7a18c9e4482",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
         "detailsTabLabel" : "Details",
         "discussionsTabLabel" : "Feed",
         "recordId" : "{!recordId}",
