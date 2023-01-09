@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Send notification email to Online Order Owner that the flow did not perform properly.</description>
+        <name>EmailToOnlinceOrderOwnerAboutLackingEmailAdress</name>
+        <label>Email To Onlince Order Owner About Lacking Email Adress</label>
+        <locationX>314</locationX>
+        <locationY>575</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailToOnlineOrderOwner</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>$Record.Owner:User.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>EmailToOnlineOrderOwnerSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>SendEmailToOnlineOrderAccountIDUser</name>
+        <label>Send Email To Online Order Account ID User</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailToOnlineOrderAccount</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>EmailRecipent</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>EmailToOnlineOrderAccountSubject</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <assignments>
+        <description>Who is email reciper?</description>
+        <name>EmailReciperAssingnment</name>
+        <label>Email Reciper Assingnment</label>
+        <locationX>182</locationX>
+        <locationY>335</locationY>
+        <assignmentItems>
+            <assignToReference>EmailRecipent</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_There_Email_Recipient</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Decision based on the matter if the email recipient can be assigned</description>
+        <name>Is_There_Email_Recipient</name>
+        <label>Is There Email Recipient?</label>
+        <locationX>182</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>EmailToOnlinceOrderOwnerAboutLackingEmailAdress</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>There is No Order Recipient</defaultConnectorLabel>
+        <rules>
+            <name>ThereIsOrderRecipient</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.BillingAccount__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>EmailRecipent</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SendEmailToOnlineOrderAccountIDUser</targetReference>
+            </connector>
+            <label>There Is Order Recipient</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Send Email Notification About New Order Created {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Send Email Notification About New Order Created</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>EmailReciperAssingnment</targetReference>
+        </connector>
+        <object>Order__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <description>Email to be sent to Online Order Account User</description>
+        <name>EmailToOnlineOrderAccount</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&lt;img src=&quot;https://marcinkaliszewskiusugikorep-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0687S00000B6NL1?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;male.PNG&quot;&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.e-korepetycje.net/mkaliszewski&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 48px; font-family: sans-serif;&quot;&gt;Twój ulubiony sklep...&lt;/a&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Dear {!$Record.BillingAccount__r.Owner.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;It is a pleasure to inform you that your order has been placed and is assigned as &lt;strong&gt;{!$Record.Name}&lt;/strong&gt;.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Best regards,&lt;/p&gt;&lt;p&gt;Online Store Team&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.linkedin.com/in/marcin-kaliszewski-70752249&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://marcinkaliszewskiusugikorep-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0687S00000B6NLB?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;linkedin_male.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailToOnlineOrderAccountSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>New online Order ({!$Record.Name}) has been created</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Used only if the flow cannot send email properly</description>
+        <name>EmailToOnlineOrderOwner</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Dear {!$Record.Owner:User.FirstName},&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Sadly, Online Order &lt;strong&gt;{!$Record.Name} (ID: {!$Record.Id})&lt;/strong&gt; has fault email address recipient. Please check if BillingAccount and its User are assigned properly.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Regards,&lt;/p&gt;&lt;p&gt;Online Shop Admin&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 10px;&quot;&gt;If you need help, inform admin the message concerns Flow: Send Email Notification About New Order Created.&lt;/span&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description>Used only if flow cannot work properky</description>
+        <name>EmailToOnlineOrderOwnerSubject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>There is no proper email address assigned to Online Order {!$Record.Name}</text>
+    </textTemplates>
+    <variables>
+        <description>Who is email recipent?</description>
+        <name>EmailRecipent</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
