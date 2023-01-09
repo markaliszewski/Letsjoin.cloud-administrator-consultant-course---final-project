@@ -2,6 +2,73 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <assignments>
+        <name>AddNewLineItemsToCollection</name>
+        <label>Add New Line Items To Collection</label>
+        <locationX>490</locationX>
+        <locationY>1838</locationY>
+        <assignmentItems>
+            <assignToReference>OrderLineItemsCollection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>NewOrderLineItem</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>IteraterThroughCustomerLineItem</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>AssignNewOrderLineItem</name>
+        <label>Assign New Order Line Item</label>
+        <locationX>490</locationX>
+        <locationY>1718</locationY>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.Discount__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Discount__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.OnlineOrder__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NewOnlineOrder</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.OnlineProduct__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Online_Product__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.Quantity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Quantity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.UnitListPrice__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.UnitListPrice__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>NewOrderLineItem.VATRate__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>IteraterThroughCustomerLineItem.Online_Product__r.DefaultVatRate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>AddNewLineItemsToCollection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>AssignTableUpdatesIntoCartLineItems</name>
         <label>Assign Table Updates Into Cart Line Items</label>
         <locationX>732</locationX>
@@ -21,7 +88,7 @@
         <name>Conversion</name>
         <label>Conversion</label>
         <locationX>402</locationX>
-        <locationY>1934</locationY>
+        <locationY>2174</locationY>
         <assignmentItems>
             <assignToReference>GetCustomerCart.Status__c</assignToReference>
             <operator>Assign</operator>
@@ -123,10 +190,10 @@
         <collectionReference>Copy_1_of_Get_Customer_Cart_Line_Items</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
-            <targetReference>NewOrderLineItems</targetReference>
+            <targetReference>AssignNewOrderLineItem</targetReference>
         </nextValueConnector>
         <noMoreValuesConnector>
-            <targetReference>Conversion</targetReference>
+            <targetReference>NewOrderLineItems</targetReference>
         </noMoreValuesConnector>
     </loops>
     <processMetadataValues>
@@ -295,49 +362,12 @@
     <recordCreates>
         <name>NewOrderLineItems</name>
         <label>New Order Line Items</label>
-        <locationX>490</locationX>
-        <locationY>1718</locationY>
+        <locationX>402</locationX>
+        <locationY>2054</locationY>
         <connector>
-            <targetReference>IteraterThroughCustomerLineItem</targetReference>
+            <targetReference>Conversion</targetReference>
         </connector>
-        <inputAssignments>
-            <field>Discount__c</field>
-            <value>
-                <elementReference>IteraterThroughCustomerLineItem.Discount__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>OnlineOrder__c</field>
-            <value>
-                <elementReference>NewOnlineOrder</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>OnlineProduct__c</field>
-            <value>
-                <elementReference>IteraterThroughCustomerLineItem.Online_Product__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Quantity__c</field>
-            <value>
-                <elementReference>IteraterThroughCustomerLineItem.Quantity__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>UnitListPrice__c</field>
-            <value>
-                <elementReference>IteraterThroughCustomerLineItem.UnitListPrice__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>VATRate__c</field>
-            <value>
-                <elementReference>IteraterThroughCustomerLineItem.Online_Product__r.DefaultVatRate__c</elementReference>
-            </value>
-        </inputAssignments>
-        <object>OrderLineItem__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
+        <inputReference>OrderLineItemsCollection</inputReference>
     </recordCreates>
     <recordLookups>
         <description>Used in a decision laterr</description>
@@ -447,7 +477,7 @@
         <name>UpdateCart</name>
         <label>Update Cart</label>
         <locationX>402</locationX>
-        <locationY>2054</locationY>
+        <locationY>2294</locationY>
         <connector>
             <targetReference>YourOrderHasBeenPlaced</targetReference>
         </connector>
@@ -915,7 +945,7 @@
         <name>YourOrderHasBeenPlaced</name>
         <label>Your Order Has Been Placed</label>
         <locationX>402</locationX>
-        <locationY>2174</locationY>
+        <locationY>2414</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -942,5 +972,21 @@
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>NewOrderLineItem</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderLineItem__c</objectType>
+    </variables>
+    <variables>
+        <name>OrderLineItemsCollection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>OrderLineItem__c</objectType>
     </variables>
 </Flow>
