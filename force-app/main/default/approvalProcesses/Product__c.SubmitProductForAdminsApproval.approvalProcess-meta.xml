@@ -5,6 +5,14 @@
     <allowedSubmitters>
         <type>owner</type>
     </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>Admin</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>Employee</submitter>
+        <type>role</type>
+    </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
         <field>Price__c</field>
