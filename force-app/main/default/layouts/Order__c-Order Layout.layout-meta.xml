@@ -193,6 +193,10 @@
         <relatedList>Case.OnlineOrder__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>OnlineProduct__c</fields>
+        <fields>Quantity__c</fields>
+        <fields>VATRate__c</fields>
+        <fields>UnitListPrice__c</fields>
         <fields>NAME</fields>
         <relatedList>OrderLineItem__c.OnlineOrder__c</relatedList>
     </relatedLists>
@@ -215,7 +219,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00h7S000000JiJq</masterLabel>
+        <masterLabel>00h7S000000XMkH</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>
