@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSetGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>All permission sets admin needs to use this org.</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Complete Perm Sets For Admins</label>
+    <permissionSets>Admins_permission_set</permissionSets>
+    <permissionSets>USF_Flow_Screen_Component_Custom_Objects</permissionSets>
+    <permissionSets>USF_Flow_Screen_Component_Datatable</permissionSets>
+    <permissionSets>Users_permission_set</permissionSets>
+    <status>Updated</status>
+</PermissionSetGroup>

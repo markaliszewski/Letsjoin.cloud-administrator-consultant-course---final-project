@@ -26,4 +26,11 @@
         <target>Case</target>
         <type>SalesforceObject</type>
     </navigationMenuItem>
+    <navigationMenuItem>
+        <label>Your Cart</label>
+        <position>4</position>
+        <publiclyAvailable>false</publiclyAvailable>
+        <target>/your-cart</target>
+        <type>InternalLink</type>
+    </navigationMenuItem>
 </NavigationMenu>
